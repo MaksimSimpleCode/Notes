@@ -8,20 +8,20 @@ using AutoMapper;
 
 namespace Notes.Application.Common.Mappings
 {
-  public  class AssemblymappingProfile:Profile
+    public class AssemblyMappingProfile : Profile
     {
-        public AssemblymappingProfile(Assembly assemly) =>
-            ApplyMappingsFromAssembly(assemly);
+        public AssemblyMappingProfile(Assembly assembly) =>
+            ApplyMappingsFromAssembly(assembly);
 
-        public void ApplyMappingsFromAssembly(Assembly assembly)
+        private void ApplyMappingsFromAssembly(Assembly assembly)
         {
             var types = assembly.GetExportedTypes()
                 .Where(type => type.GetInterfaces()
-                .Any(i => i.IsGenericType &&
-                i.GetGenericTypeDefinition() == typeof(IMapWith<>)))
+                    .Any(i => i.IsGenericType &&
+                    i.GetGenericTypeDefinition() == typeof(IMapWith<>)))
                 .ToList();
 
-            foreach(var type in types)
+            foreach (var type in types)
             {
                 var instance = Activator.CreateInstance(type);
                 var methodInfo = type.GetMethod("Mapping");
