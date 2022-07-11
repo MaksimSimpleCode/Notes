@@ -13,23 +13,22 @@ namespace Notes.Identity
         public static IEnumerable<ApiScope> ApiScopes =>
             new List<ApiScope>
             {
-                new ApiScope("NotesWebAPI","Web API")
+                new ApiScope("NotesWebAPI", "Web API")
             };
 
         public static IEnumerable<IdentityResource> IdentityResources =>
-            new List<IdentityResource>
-            {
+              new List<IdentityResource>
+              {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile()
-            };
-
+              };
         public static IEnumerable<ApiResource> ApiResources =>
             new List<ApiResource>
             {
                 new ApiResource("NotesWebAPI", "Web API", new []
-                {JwtClaimTypes.Name })
+                    { JwtClaimTypes.Name})
                 {
-                    Scopes={"NotesWebAPI"}
+                    Scopes = {"NotesWebAPI"}
                 }
             };
 
@@ -38,32 +37,30 @@ namespace Notes.Identity
             {
                 new Client
                 {
-                    ClientId="notes=web-api",
-                    ClientName="Notes Web",
-                    AllowedGrantTypes=GrantTypes.Code,
-                    RequireClientSecret=false,
-                    RequirePkce=true,
+                    ClientId = "notes-web-api",
+                    ClientName = "Notes Web",
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RequireClientSecret = false,
+                    RequirePkce = true,
                     RedirectUris =
                     {
-                        "http://.../signin-oidc"
+                        "http://localhost:3000/signin-oidc"
                     },
-                    AllowedCorsOrigins=
+                    AllowedCorsOrigins =
                     {
-                        "http://..."
+                        "http://localhost:3000"
                     },
-                    PostLogoutRedirectUris=
+                    PostLogoutRedirectUris =
                     {
-                        "http://.../signin-oidc"
+                        "http://localhost:3000/signout-oidc"
                     },
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         "NotesWebAPI"
-                        
                     },
-                    AllowAccessTokensViaBrowser=true
-
+                    AllowAccessTokensViaBrowser = true
                 }
             };
     }

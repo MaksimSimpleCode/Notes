@@ -44,13 +44,12 @@ namespace Notes.WebApi.Middleware
                     break;
                 case NotFoundException:
                     code = HttpStatusCode.NotFound;
-
                     break;
             }
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)code;
 
-            if(result == string.Empty)
+            if (result == string.Empty)
             {
                 result = JsonSerializer.Serialize(new { errpr = exception.Message });
             }

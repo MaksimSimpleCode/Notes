@@ -40,18 +40,17 @@ namespace Notes.Identity
                 .AddEntityFrameworkStores<AuthDbContext>()
                 .AddDefaultTokenProviders();
 
-
             services.AddIdentityServer()
-                .AddAspNetIdentity<AppUser>()
-                .AddInMemoryApiResources(Configuration.ApiResources)
-                .AddInMemoryIdentityResources(Configuration.IdentityResources)
-                .AddInMemoryApiScopes(Configuration.ApiScopes)
-                .AddInMemoryClients(Configuration.Clients)
-                .AddDeveloperSigningCredential();
+                           .AddAspNetIdentity<AppUser>()
+                           .AddInMemoryApiResources(Configuration.ApiResources)
+                           .AddInMemoryIdentityResources(Configuration.IdentityResources)
+                           .AddInMemoryApiScopes(Configuration.ApiScopes)
+                           .AddInMemoryClients(Configuration.Clients)
+                           .AddDeveloperSigningCredential();
 
             services.ConfigureApplicationCookie(config =>
             {
-                config.Cookie.Name = "Notes.Identity,Cookie";
+                config.Cookie.Name = "Notes.Identity.Cookie";
                 config.LoginPath = "/Auth/Login";
                 config.LogoutPath = "/Auth/Logout";
             });
