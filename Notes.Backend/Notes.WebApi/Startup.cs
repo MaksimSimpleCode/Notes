@@ -17,6 +17,7 @@ using System.IO;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Notes.WebApi.Services;
 
 namespace Notes.WebApi
 {
@@ -69,8 +70,9 @@ namespace Notes.WebApi
             services.AddSwaggerGen();
             services.AddApiVersioning();
 
-           // services.AddSingleton<ICurrentUserService, CurrentUserService>();
             services.AddHttpContextAccessor();;
+            services.AddSingleton<ICurrentUserService,CurrentUserService > ();
+            services.AddHttpContextAccessor();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
