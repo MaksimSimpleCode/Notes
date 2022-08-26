@@ -1,15 +1,11 @@
 ﻿using AutoMapper;
 using Notes.Application.Common.Mappings;
 using Notes.Application.Notes.Commands.CreateNote;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Notes.WebApi.Models
 {
-    public class CreateNoteDto:IMapWith<CreateNoteCommand>
+    public class CreateNoteDto : IMapWith<CreateNoteCommand>
     {
         [Required]
         public string Title { get; set; }

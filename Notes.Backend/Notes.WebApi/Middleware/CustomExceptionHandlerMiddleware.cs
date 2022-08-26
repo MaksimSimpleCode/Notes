@@ -1,13 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Http;
+using Notes.Application.Common.Exceptions;
 using System;
-
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FluentValidation;
 using System.Net;
 using System.Text.Json;
-using Notes.Application.Common.Exceptions;
+using System.Threading.Tasks;
 
 namespace Notes.WebApi.Middleware
 {
@@ -28,7 +25,7 @@ namespace Notes.WebApi.Middleware
             }
             catch (Exception exception)
             {
-                await HandleExceptionAsync(context, exception);          
+                await HandleExceptionAsync(context, exception);
             }
         }
 

@@ -1,9 +1,9 @@
-﻿using System;
-using FluentValidation;
+﻿using FluentValidation;
+using System;
 
 namespace Notes.Application.Notes.Queries.GetNoteDetails
 {
-   public  class GetNoteDetailsQueryValidator: AbstractValidator<GetNoteDetailsQuery>
+    public class GetNoteDetailsQueryValidator : AbstractValidator<GetNoteDetailsQuery>
     {
         public GetNoteDetailsQueryValidator()
         {

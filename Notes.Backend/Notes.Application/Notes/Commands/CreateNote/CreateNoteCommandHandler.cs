@@ -1,13 +1,13 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Notes.Application.Interfaces;
 using Notes.Domain;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Notes.Application.Notes.Commands.CreateNote
 {
-    public class CreateNoteCommandHandler:IRequestHandler<CreateNoteCommand,Guid>
+    public class CreateNoteCommandHandler : IRequestHandler<CreateNoteCommand, Guid>
     {
         private readonly INotesDbContext _dbContext;
 
@@ -15,7 +15,7 @@ namespace Notes.Application.Notes.Commands.CreateNote
         {
             _dbContext = dbContext;
         }
-        public async Task<Guid> Handle (CreateNoteCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(CreateNoteCommand request, CancellationToken cancellationToken)
         {
             var note = new Note
             {

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
+using System;
 
 namespace Notes.Application.Notes.Queries.GetNoteList
 {
-   public class GetNoteListQuery : IRequest<NoteListVm>
+    public class GetNoteListQuery : IRequest<NoteListVm>
     {
-        public  Guid UserId { get; set; }
+        public Guid UserId { get; set; }
     }
 }

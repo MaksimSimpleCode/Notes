@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Notes.Application.Notes.Commands.CreateNote;
 using Notes.Application.Notes.Commands.DeleteCommand;
@@ -7,11 +9,7 @@ using Notes.Application.Notes.Queries.GetNoteDetails;
 using Notes.Application.Notes.Queries.GetNoteList;
 using Notes.WebApi.Models;
 using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Authorization;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 
 namespace Notes.WebApi.Controllers
 {
@@ -20,7 +18,7 @@ namespace Notes.WebApi.Controllers
     [ApiVersionNeutral]
     [Produces("application/json")]
     [Route("api/{version:apiVersion}/[controller]")]
-    public class NoteController:BaseController
+    public class NoteController : BaseController
     {
         private readonly IMapper _mapper;
         public NoteController(IMapper mapper)
@@ -40,10 +38,10 @@ namespace Notes.WebApi.Controllers
         /// <response code="200">Success</response>
         /// <response code="401">If the user is unauthorized </response>
         [HttpGet]
-       // [Authorize]
+        // [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<ActionResult<NoteListVm>> GetAll() 
+        public async Task<ActionResult<NoteListVm>> GetAll()
         {
             var query = new GetNoteListQuery
             {
@@ -73,7 +71,7 @@ namespace Notes.WebApi.Controllers
             var query = new GetNoteDetailsQuery
             {
                 UserId = UserId,
-                Id=id
+                Id = id
             };
             var vm = await Mediator.Send(query);
             return Ok(vm);
@@ -99,7 +97,7 @@ namespace Notes.WebApi.Controllers
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<ActionResult<NoteDetailsVm>> Create([FromBody]CreateNoteDto createNoteDto)
+        public async Task<ActionResult<NoteDetailsVm>> Create([FromBody] CreateNoteDto createNoteDto)
         {
             var command = _mapper.Map<CreateNoteCommand>(createNoteDto);
             command.UserId = UserId;

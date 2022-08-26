@@ -1,23 +1,19 @@
-using MediatR;
-using MediatR.Pipeline;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Notes.Application;
 using Notes.Application.Common.Mappings;
 using Notes.Application.Interfaces;
 using Notes.Persistence;
 using Notes.WebApi.Middleware;
-using System.Reflection;
-using System;
-using System.IO;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Notes.WebApi.Services;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Reflection;
 
 namespace Notes.WebApi
 {
@@ -30,11 +26,11 @@ namespace Notes.WebApi
         }
         public void ConfigureServices(IServiceCollection services)
         {
-             services.AddAutoMapper(config =>
-            {
-                config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
-                config.AddProfile(new AssemblyMappingProfile(typeof(INotesDbContext).Assembly));
-            });
+            services.AddAutoMapper(config =>
+           {
+               config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
+               config.AddProfile(new AssemblyMappingProfile(typeof(INotesDbContext).Assembly));
+           });
 
             services.AddApplication();
             services.AddPersistence(Configuration);
@@ -70,8 +66,8 @@ namespace Notes.WebApi
             services.AddSwaggerGen();
             services.AddApiVersioning();
 
-            services.AddHttpContextAccessor();;
-            services.AddSingleton<ICurrentUserService,CurrentUserService > ();
+            services.AddHttpContextAccessor(); ;
+            services.AddSingleton<ICurrentUserService, CurrentUserService>();
             services.AddHttpContextAccessor();
         }
 

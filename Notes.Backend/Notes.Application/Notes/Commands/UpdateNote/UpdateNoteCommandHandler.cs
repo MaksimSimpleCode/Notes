@@ -1,15 +1,15 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Notes.Application.Common.Exceptions;
 using Notes.Application.Interfaces;
 using Notes.Domain;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Notes.Application.Notes.Commands.UpdateNote
 {
-  public  class UpdateNoteCommandHandler : IRequestHandler<UpdateNoteCommand>
+    public class UpdateNoteCommandHandler : IRequestHandler<UpdateNoteCommand>
     {
         private readonly INotesDbContext _dbContext;
 
